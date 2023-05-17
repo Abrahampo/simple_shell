@@ -1,5 +1,5 @@
 0x16. C - Simple Shell
-This project is done by Abraham and Hoffmann
+This project is done by Abraham and Hoffman
 All Credits should be given to both partners for
 their hard work and dedication concerning the project.
 They have been working hard since they beginning of the  program
