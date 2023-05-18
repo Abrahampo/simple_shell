@@ -114,7 +114,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 {
 	static char buffer[READ_BUF_SIZE];
 	static size_t k, le;
-	size_t m;
+	size_t m = 0;
 	ssize_t ret = 0, y = 0;
 	char *pp = NULL, *new_ptr = NULL, *h;
 
@@ -134,7 +134,8 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	if (y)
 		_strncat(new_ptr, buffer + k, k - k);
 	else
-		_strncpy(new_ptr, buffer + m, m - m + 1);
+		_strncpy(new_ptr, buffer + k, m - k + 1);
+
 	y += k - m;
 	k = m;
 	pp = new_ptr;
