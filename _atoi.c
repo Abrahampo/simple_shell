@@ -52,33 +52,25 @@ int _isalpha(int c)
  */
 int _atoi(char *s)
 {
-	int k = 0, pro = 1, fg = 0;
-	long outcome = 0;
+	int k, pro = 1, fg = 0, add;
+	unsigned int outcome = 0;
 
-	while (s[k] == ' ')
-		k++;
-	if (s[k] == '-')
+	for (k = 0; s[k] != '\0' && fg != 2; k++)
 	{
-		pro = -1;
-		k++;
+		if (s[k] == '-')
+			pro *= -1;
+		if (s[k] >= '0' && s[k] <= '9')
+		{
+			fg = 1;
+			outcome *= 10;
+			outcome += (s[k] - '0');
+		}
+		else if (fg == 1)
+			fg = 2;
 	}
-	else if (s[k] == '+')
-	{
-		k++;
-	}
-	while (s[k] >= '0' && s[k] <= '9')
-	{
-		fg = 1;
-		outcome = outcome * 10 + (s[k] - '0');
-		k++;
-	}
-	if (fg == 0)
-		return (0);
-	outcome *= pro;
-	if (outcome > INT_MAX)
-		return (INT_MAX);
-	else if (outcome < INT_MIN)
-		return (INT_MIN);
-	return (outcome);
+	if (pro == -1)
+		add = -outcome;
+	else
+		add = outcome;
+	return (add);
 }
-
