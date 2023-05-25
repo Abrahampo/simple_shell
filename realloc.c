@@ -33,14 +33,14 @@ void ffree(char **pp)
 	free(zz);
 }
 
-/**
- * _realloc - This is the block of memory for reallocation
- * @ptr: Just the malloc'ated block of a pointer
- * @old_size: Just the block of byte or bytes size for pre.
- * @new_size: The byte size for a new block
- * Return: Just the da ol'block for the pointer name
- */
 
+/**
+ * _realloc - Reallocates a block of memory.
+ * @ptr: Pointer to the original block of memory
+ * @old_size: Size of the original block in bytes
+ * @new_size: Size of the new block in bytes
+ * Return: Pointer to the reallocated block of memory
+ */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *uu;
@@ -48,15 +48,17 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (!ptr)
 		return (malloc(new_size));
 	if (!new_size)
-		return (free(ptr), NULL);
+	{
+		free(ptr);
+		return (NULL);
+	}
 	if (new_size == old_size)
-		return (ptr);
+			return (ptr);
 	uu = malloc(new_size);
 	if (!uu)
 		return (NULL);
-	old_size = old_size < new_size ? old_size : new_size;
-	while (old_size--)
-		uu[old_size] = ((char *)ptr)[old_size];
+	for (unsigned int i = 0; i < old_size && i < new_size; i++)
+		uu[i] = ((char *)ptr)[i];
 	free(ptr);
 	return (uu);
 }
