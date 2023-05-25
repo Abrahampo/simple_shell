@@ -22,12 +22,9 @@ int interactive(info_t *info)
 
 int is_delim(char c, char *delim)
 {
-	while (*delim != '\0')
-	{
-		if (*delim == c)
+	while (*delim)
+		if (*delim++ == c)
 			return (1);
-	delim++;
-	}
 	return (0);
 }
 

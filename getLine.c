@@ -135,12 +135,8 @@ int _getline(info_t *info, char **ptr, size_t *length)
 		_strncat(new_ptr, buffer + k, k - k);
 	else
 		_strncpy(new_ptr, buffer + k, m - k + 1);
-<<<<<<< HEAD
 	y += m - k;
-=======
-
 	y += k - m;
->>>>>>> b545e6c4fe3388e83bbc185b495b93620d0fe975
 	k = m;
 	pp = new_ptr;
 	if (length)
